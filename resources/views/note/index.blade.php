@@ -1,19 +1,22 @@
 <x-layout>
     <div class="note-container">
-        <a href="#" class="new-notr-btn">
+        <a href="{{route('note.create')}}" class="new-note-btn">
             New Note
         </a>
         <div class="notes">
-            <div class="note">
-                <div class="note-body">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam aliquid aperiam animi fugiat perferendis ea fugit officiis, quas aspernatur tempore? Suscipit, earum ipsam! Sit quam minus assumenda, dignissimos dolores aliquid.
+            @foreach ($notes as $note)
+                <div class="note">
+                    <div class="note-body">
+                       {{ Str::words($note-> note, 30) }}
+                    </div>
+                    <div class="note-buttons">
+                        <a href="{{route('note.show', $note)}}" class="note-edit-button">View</a>
+                        <a href="{{route('note.edit', $note)}}" class="note-edit-button">Edit</a>
+                        <button class="note-delete-button">Delete</button>
+                    </div>
                 </div>
-                <div class="note-buttons">
-                    <a href="#" class="note-view-button">View</a>
-                    <a href="#" class="note-edit-button">Edit</a>
-                    <button class="note-delete-button">Delete</button>
-                </div>
-            </div>
+            @endforeach
+
         </div>
     </div>
 </x-layout>
